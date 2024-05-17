@@ -1081,5 +1081,4 @@
     "jumpToHint.common.hintCharacters": "fjdksla;eiwoghty",
     "jumpToHint.theme.backgroundColor": "MediumVioletRed",
     "jumpToHint.theme.fontColor": "White",
-    "jumpToHint.common.wordRegExp": "([A-Z]+([a-z0-9])*)|([a-z0-9]{2,}):",
 }
