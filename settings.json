@@ -8,7 +8,7 @@
     "[python]": {
         // "editor.formatOnType": true,
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": false
     },
     "git.autofetch": true,
     "githubPullRequests.terminalLinksHandler": "github",
@@ -17,7 +17,6 @@
     "[sql]": {
         "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
     },
-    "editor.fontFamily": "Meslo LG L, 'Courier New', monospace",
     "workbench.preferredDarkColorTheme": "Visual Studio Dark",
     "workbench.iconTheme": "material-icon-theme",
     "editor.find.addExtraSpaceOnTop": false,
@@ -42,11 +41,8 @@
     "telemetry.telemetryLevel": "off",
     "frankenstein.reminderViewIntervalInMinutes": 500,
     "workbench.colorTheme": "Dobri Next -C04- Material",
-    "python.linting.flake8Args": [
-        "--max-line-length=88"
-    ],
     "flake8.args": [
-        "--max-line-length=88"
+        "--ignore=E501"
     ],
     "peacock.favoriteColors": [
         {
@@ -258,6 +254,10 @@
                 "n": {
                     "text": "next buffer",
                     "command": "workbench.action.nextEditor"
+                },
+                "w": {
+                    "text": "word",
+                    "command": "jumpToHint.jumpByWord"
                 },
             }
         },
@@ -1063,4 +1063,22 @@
     },
     "breadcrumbs.enabled": false,
     "workbench.activityBar.location": "hidden",
+    "editor.fontFamily": "'Meslo LG M', 'Courier New', monospace",
+    "workbench.startupEditor": "none",
+    "workbench.statusBar.visible": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.stickyScroll.enabled": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.autoSaveDelay": 200,
+    "jumpToHint.common.inputStyle": "InputBox",
+    "jumpToHint.common.hintCharacters": "fjdksla;eiwoghty",
+    "jumpToHint.theme.backgroundColor": "MediumVioletRed",
+    "jumpToHint.theme.fontColor": "White",
 }
