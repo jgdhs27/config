@@ -1,0 +1,20 @@
+theme = "material_darker"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[keys.normal.g]
+s = "goto_line_start"
+h = "goto_first_nonwhitespace"
+
+[editor]
+scrolloff = 8
+bufferline = "always"
+color-modes = true
+
+[editor.lsp]
+display-messages = true
+
+[editor.indent-guides]
+render = true
+character = "|"
