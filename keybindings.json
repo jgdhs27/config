@@ -1089,6 +1089,34 @@
         "when": "editorTextFocus && dance.mode == 'select'"
     },
     {
+        "key": "shift+[",
+        "command": "dance.run",
+        "args": {
+            "code": [
+                "let pos = Selections.mapByIndex((_i, sel, document) => Objects.paragraph.start(Positions.previous(sel.active)));",
+                "if (Context.current.mode.name !== 'select') {",
+                "await vscode.commands.executeCommand('dance.selections.reduce');",
+                "}",
+                "Selections.updateWithFallbackByIndex((i, sel, document) => new vscode.Selection(sel.anchor, pos[i], undefined, document));"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'normal' || editorTextFocus && dance.mode == 'select'"
+    },
+    {
+        "key": "shift+]",
+        "command": "dance.run",
+        "args": {
+            "code": [
+                "let pos = Selections.mapByIndex((_i, sel, document) => Objects.paragraph.end(sel.active));",
+                "if (Context.current.mode.name !== 'select') {",
+                "await vscode.commands.executeCommand('dance.selections.reduce');",
+                "}",
+                "Selections.updateWithFallbackByIndex((i, sel, document) => new vscode.Selection(sel.anchor, pos[i], undefined, document));"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'normal' || editorTextFocus && dance.mode == 'select'"
+    },
+    {
         "key": "space",
         "command": "dance.openMenu",
         "args": {
