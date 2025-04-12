@@ -15,10 +15,31 @@ R = "replace"
 s = "goto_line_start"
 h = "goto_first_nonwhitespace"
 
+[keys.normal.m]
+w = "@miw"
+W = "@miW"
+p = "@mip"
+t = "@mit"
+f = "@mif"
+a = "@mia"
+c = "@mic"
+T = "@miT"
+e = "@mie"
+g = "@mig"
+"(" = "@mi("
+")" = "@mi)"
+"{" = "@mi{"
+"}" = "@mi}"
+"[" = "@mi["
+"]" = "@mi]"
+"'" = "@mi'"
+'"' = '@mi"'
+
 [editor]
 scrolloff = 8
 bufferline = "always"
 color-modes = true
+jump-label-alphabet = "aeiounrtsgbldwjzxmcv"
 
 [editor.lsp]
 display-messages = true
