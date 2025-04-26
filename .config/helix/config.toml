@@ -3,13 +3,23 @@ theme = "material_darker"
 [editor.cursor-shape]
 insert = "bar"
 
+[keys.normal."backspace"]
+y = ":sh zellij run --close-on-exit --floating -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh open"
+g = ":sh zellij run --close-on-exit --floating -x 10% -y 10% --width 80% --height 80% -- lazygit"
+
 [keys.normal]
-"'" = ":sh zellij run -c -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh open"
-'"' = ":sh zellij run -c -f -x 10% -y 10% --width 80% --height 80% -- lazygit"
 r = "replace_with_yanked"
 R = "replace"
 '}' = "goto_next_paragraph"
 '{' = "goto_prev_paragraph"
+'-' = "decrement"
+'=' = "increment"
+H = "extend_to_first_nonwhitespace"
+L = "extend_to_line_end"
+
+[keys.select]
+H = "extend_to_line_start"
+L = "extend_to_line_end"
 
 [keys.normal.g]
 s = "goto_line_start"
