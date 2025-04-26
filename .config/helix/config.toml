@@ -14,6 +14,7 @@ R = "replace"
 '{' = "goto_prev_paragraph"
 '-' = "decrement"
 '=' = "increment"
+"'" = ":format"
 H = "extend_to_first_nonwhitespace"
 L = "extend_to_line_end"
 
@@ -50,6 +51,8 @@ scrolloff = 8
 bufferline = "always"
 color-modes = true
 jump-label-alphabet = "aeiounrtsgbldwjzxmcv"
+rulers = [80]
+auto-pairs = false
 
 [editor.lsp]
 display-messages = true
