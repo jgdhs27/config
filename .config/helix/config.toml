@@ -18,10 +18,9 @@ h = "goto_first_nonwhitespace"
 [keys.normal.m]
 w = "@miw"
 W = "@miW"
-p = "@mip"
+p = "@map"
 t = "@mit"
 f = "@mif"
-a = "@mia"
 c = "@mic"
 T = "@miT"
 e = "@mie"
@@ -36,6 +35,7 @@ g = "@mig"
 '"' = '@mi"'
 
 [editor]
+true-color = true
 scrolloff = 8
 bufferline = "always"
 color-modes = true
