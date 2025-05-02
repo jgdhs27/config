@@ -945,7 +945,7 @@
                 "shift": "extend"
             }
         ],
-        "when": "editorTextFocus && dance.mode == 'select' || dance.mode == 'normal'"
+        "when": "editorTextFocus && (dance.mode == 'select' || dance.mode == 'normal')"
     },
     {
         "key": "shift+l",
@@ -955,7 +955,7 @@
                 "shift": "extend"
             }
         ],
-        "when": "editorTextFocus && dance.mode == 'select' || dance.mode == 'normal'"
+        "when": "editorTextFocus && (dance.mode == 'select' || dance.mode == 'normal')"
     },
     {
         "key": "pageup",

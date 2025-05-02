@@ -1086,13 +1086,7 @@
                 },
                 "g": {
                     "text": "Debug",
-                    "command": "dance.openMenu",
-                    "args": [
-                        {
-                            "menu": "debug-hx",
-                            "locked": true
-                        }
-                    ]
+                    "command": "editor.debug.action.toggleBreakpoint",
                 },
                 "w": {
                     "text": "Window",
@@ -1230,7 +1224,7 @@
     "isort.check": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.rulers": [
-        88
+        80
     ],
     "typescript.updateImportsOnFileMove.enabled": "always",
     "[svelte]": {
