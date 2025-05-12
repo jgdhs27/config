@@ -102,6 +102,7 @@
         "statusBar.debuggingBackground": "#005f5f"
     },
     // Dance ...............................................................{{{1
+    "dance.smartCase": true,
     "dance.modes": {
         "normal": {
             "lineNumbers": "inherit",
@@ -149,100 +150,39 @@
         },
     },
     "dance.menus": {
-        "goto-hx": {
+        "goto": {
             "title": "Goto",
             "items": {
-                "g": {
-                    "text": "line number <n> else file start",
-                    "command": "dance.select.lineStart",
-                    "args": [
-                        {
-                            "count": 1
-                        }
-                    ]
-                },
-                "e": {
-                    "text": "last line",
-                    "command": "dance.select.lineStart",
-                    "args": [
-                        {
-                            "count": 2147483647
-                        }
-                    ]
-                },
-                "f": {
-                    "text": "files in selection",
-                    "command": "editor.action.openLink"
-                },
-                "s": {
-                    "text": "line start",
-                    "command": "dance.select.lineStart"
-                },
-                "l": {
-                    "text": "line end",
-                    "command": "dance.select.lineEnd"
-                },
-                "h": {
-                    "text": "first non-blank in line",
-                    "command": "dance.select.lineStart",
-                    "args": [
-                        {
-                            "skipBlank": true
-                        }
-                    ]
-                },
-                "d": {
-                    "text": "definition",
-                    "command": "editor.action.revealDefinition"
-                },
                 "y": {
                     "text": "type definition",
                     "command": "editor.action.goToTypeDefinition"
-                },
-                "r": {
-                    "text": "references",
-                    "command": "editor.action.goToReferences"
                 },
                 "i": {
                     "text": "implementation",
                     "command": "editor.action.goToImplementation"
                 },
-                "t": {
-                    "text": "window top",
-                    "command": "dance.select.firstVisibleLine"
-                },
-                "c": {
-                    "text": "window center",
-                    "command": "dance.select.middleVisibleLine"
-                },
-                "b": {
-                    "text": "window bottom",
-                    "command": "dance.select.lastVisibleLine"
-                },
-                "a": {
-                    "text": "last accessed file",
-                    "command": "workbench.action.previousEditorInGroup"
-                },
                 "m": {
                     "text": "last modified file",
                     "command": "???"
                 },
-                "p": {
-                    "text": "previous buffer",
-                    "command": "workbench.action.previousEditor"
-                },
-                "n": {
-                    "text": "next buffer",
-                    "command": "workbench.action.nextEditor"
-                },
                 "w": {
                     "text": "word",
-                    "command": "jumpToHint.jumpByWord"
+                    "command": "dance.run",
+                    "args": [
+                        {
+                            "code": [
+                                "if (Context.current.mode.name !== 'helix/select') {",
+                                "await vscode.commands.executeCommand('dance.seek.wordLabel');",
+                                "} else {",
+                                "await vscode.commands.executeCommand('dance.seek.wordLabel.extend');",
+                                "}"
+                            ]
+                        }
+                    ]
                 },
             }
         },
-        "match-hx": {
-            "title": "Match",
+        "match": {
             "items": {
                 "m": {
                     "text": "Goto matching bracket",
@@ -250,9 +190,9 @@
                     "args": [
                         {
                             "code": [
-                                "let shift = Context.current.mode.name !== 'select' ? 'jump' : 'extend';",
+                                "let shift = Context.current.mode.name !== 'helix/select' ? 'jump' : 'extend';",
                                 "await vscode.commands.executeCommand('dance.seek.enclosing.backward', { shift });",
-                                "if (Context.current.mode.name !== 'select') {",
+                                "if (Context.current.mode.name !== 'helix/select') {",
                                 "await vscode.commands.executeCommand('dance.selections.reduce');",
                                 "}",
                             ]
@@ -341,32 +281,6 @@
                                 "Positions.at(o[i].anchor.line, o[i].anchor.character - 1 + o[i].anchor.isEqual(s[i].anchor) * (sel.isReversed ? -1 : 1)),",
                                 "Positions.at(o[i].active.line, o[i].active.character - 1 - o[i].active.isEqual(s[i].active) * (sel.isReversed ? -1 : 1)),",
                                 "));",
-                            ]
-                        }
-                    ]
-                },
-                "a": {
-                    "text": "Select around object",
-                    "command": "dance.openMenu",
-                    "args": [
-                        {
-                            "menu": "object-hx",
-                            "title": "Match around"
-                        }
-                    ]
-                },
-                "i": {
-                    "text": "Select inside object",
-                    "command": "dance.openMenu",
-                    "args": [
-                        {
-                            "menu": "object-hx",
-                            "title": "Match inside",
-                            "pass": [
-                                {
-                                    "inner": true,
-                                    "open": false
-                                }
                             ]
                         }
                     ]
@@ -480,7 +394,7 @@
                         }
                     ]
                 },
-                "\"": {
+                "\"q": {
                     "text": "Double quotes",
                     "command": "dance.seek.object",
                     "args": [
@@ -661,88 +575,8 @@
                 },
             },
         },
-        "view-hx": {
-            "title": "View",
-            "items": {
-                "cz": {
-                    "text": "Align view center",
-                    "command": "dance.view.line",
-                    "args": [
-                        {
-                            "at": "center"
-                        }
-                    ]
-                },
-                "t": {
-                    "text": "Align view top",
-                    "command": "dance.view.line",
-                    "args": [
-                        {
-                            "at": "top"
-                        }
-                    ]
-                },
-                "b": {
-                    "text": "Align view bottom",
-                    "command": "dance.view.line",
-                    "args": [
-                        {
-                            "at": "bottom"
-                        }
-                    ]
-                },
-                "m": {
-                    "text": "Align view middle",
-                    "command": "???"
-                },
-                "k": {
-                    "text": "Scroll view up",
-                    "command": "editorScroll",
-                    "args": [
-                        {
-                            "by": "line",
-                            "revealCursor": true,
-                            "to": "up"
-                        }
-                    ]
-                },
-                "j": {
-                    "text": "Scroll view down",
-                    "command": "editorScroll",
-                    "args": [
-                        {
-                            "by": "line",
-                            "revealCursor": true,
-                            "to": "down"
-                        }
-                    ]
-                },
-                /*
-                "C-b": { "text": "Move page up",        "command": "dance.select.vertically", "args": [{ "direction": -1, "by": "page"     }] },
-                "C-f": { "text": "Move page down",      "command": "dance.select.vertically", "args": [{ "direction":  1, "by": "page"     }] },
-                "C-u": { "text": "Move half page up",   "command": "dance.select.vertically", "args": [{ "direction": -1, "by": "halfPage" }] },
-                "C-d": { "text": "Move half page down", "command": "dance.select.vertically", "args": [{ "direction":  1, "by": "halfPage" }] },
-                */
-                "/": {
-                    "text": "Search for regex pattern",
-                    "command": "dance.search"
-                },
-                "?": {
-                    "text": "Reverse search for regex pattern",
-                    "command": "dance.search.backward"
-                },
-                "n": {
-                    "text": "Select next search match",
-                    "command": "dance.search.next"
-                },
-                "N": {
-                    "text": "Select previous search match",
-                    "command": "dance.search.previous"
-                },
-            },
-        },
         "window-hx": {
-            "title": "View",
+            "title": "View (DIY)",
             "items": {
                 "h": {
                     "text": "Jump to the split on the left",
@@ -1201,7 +1035,6 @@
     "workbench.activityBar.location": "hidden",
     "editor.fontFamily": "'MesloLGM Nerd Font Regular', 'Courier New', monospace",
     "workbench.startupEditor": "none",
-    "workbench.statusBar.visible": false,
     "python.defaultInterpreterPath": "C:\\Users\\obendram\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
     "window.zoomLevel": 1,
     "[javascript]": {
@@ -1259,4 +1092,5 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
+    "editor.cursorWidth": 1,
 }
