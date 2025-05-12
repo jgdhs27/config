@@ -84,7 +84,7 @@
         "when": "editorTextFocus"
     },
     //
-    // Normal mode
+    // Normal mode (DIY)
     //
     {
         "key": "h",
@@ -1250,6 +1250,452 @@
         "key": "ctrl+j",
         "command": "dance.edit.newLine.below.insert",
         "when": "editorTextFocus && dance.mode == 'insert'"
+    },
+    //
+    // Normal mode (hx)
+    //
+    {
+        "key": "Shift+R",
+        "when": "editorTextFocus && dance.mode == 'helix/normal'",
+        "     ": "Replace characters",
+        "command": "dance.edit.replaceCharacters"
+    },
+    {
+        "key": "R",
+        "when": "editorTextFocus && dance.mode == 'helix/normal'",
+        "title": "Insert contents of register",
+        "command": "dance.edit.insert"
+    },
+    {
+        "key": "alt+o",
+        "command": "editor.action.smartSelect.expand",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "alt+i",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "alt+p",
+        "command": "???",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "alt+n",
+        "command": "???",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "m",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "match",
+            "pass": [
+                {
+                    "inner": true,
+                    "open": false
+                }
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "[",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "left-bracket-hx",
+            "pass": [
+                {
+                    "shift": "jump"
+                }
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "shift+[",
+        "command": "dance.run",
+        "args": {
+            "code": [
+                "let pos = Selections.mapByIndex((_i, sel, document) => Objects.paragraph.start(Positions.previous(sel.active)));",
+                "if (Context.current.mode.name !== 'select') {",
+                "await vscode.commands.executeCommand('dance.selections.reduce');",
+                "}",
+                "Selections.updateWithFallbackByIndex((i, sel, document) => new vscode.Selection(sel.anchor, pos[i], undefined, document));"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "shift+]",
+        "command": "dance.run",
+        "args": {
+            "code": [
+                "let pos = Selections.mapByIndex((_i, sel, document) => Objects.paragraph.end(sel.active));",
+                "if (Context.current.mode.name !== 'select') {",
+                "await vscode.commands.executeCommand('dance.selections.reduce');",
+                "}",
+                "Selections.updateWithFallbackByIndex((i, sel, document) => new vscode.Selection(sel.anchor, pos[i], undefined, document));"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "]",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "right-bracket-hx",
+            "pass": [
+                {
+                    "shift": "jump"
+                }
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "alt+u",
+        "command": "dance.history.undo.selections",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "alt+shift+u",
+        "command": "dance.history.redo.selections",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "=",
+        "command": "editor.action.formatSelection",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "alt+shift+;",
+        "command": "dance.selections.faceForward",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "pageup",
+        "command": "dance.select.vertically",
+        "args": {
+            "direction": -1,
+            "by": "halfPage",
+            "shift": "jump"
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "pagedown",
+        "command": "dance.select.vertically",
+        "args": {
+            "direction": 1,
+            "by": "halfPage",
+            "shift": "jump"
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "tab",
+        "command": "workbench.action.navigateForward",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "space",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "leader-hx",
+            "pass": [
+                {
+                    "shift": "jump"
+                }
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "=",
+        "command": "editor.emmet.action.incrementNumberByOne",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "-",
+        "command": "editor.emmet.action.decrementNumberByOne",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "\\",
+        "command": "dance.ignore",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "'",
+        "command": "editor.action.formatDocument",
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || editorTextFocus && dance.mode == 'helix/select'"
+    },
+    //
+    // Select
+    //
+    {
+        "key": "shift+h",
+        "command": "dance.select.lineStart.skipBlank.extend",
+        "args": [
+            {
+                "shift": "extend"
+            }
+        ],
+        "when": "editorTextFocus && (dance.mode == 'helix/select' || dance.mode == 'helix/normal')"
+    },
+    {
+        "key": "shift+l",
+        "command": "dance.select.lineEnd.extend",
+        "args": [
+            {
+                "shift": "extend"
+            }
+        ],
+        "when": "editorTextFocus && (dance.mode == 'helix/select' || dance.mode == 'helix/normal')"
+    },
+    {
+        "key": "pageup",
+        "command": "dance.select.vertically",
+        "args": {
+            "shift": "extend",
+            "direction": -1,
+            "by": "halfPage"
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "pagedown",
+        "command": "dance.select.vertically",
+        "args": {
+            "shift": "extend",
+            "direction": 1,
+            "by": "halfPage"
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "window-hx",
+            "pass": [
+                {
+                    "shift": "extend"
+                }
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "backspace",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "ui-hx",
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/normal' || dance.mode == 'helix/select'"
+    },
+    {
+        "key": "[",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "left-bracket-hx",
+            "pass": [
+                {
+                    "shift": "extend"
+                }
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "]",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "right-bracket-hx",
+            "pass": [
+                {
+                    "shift": "extend"
+                }
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "space",
+        "command": "dance.openMenu",
+        "args": {
+            "menu": "leader-hx",
+            "pass": [
+                {
+                    "shift": "extend"
+                }
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    // TODO do the rest, this is incomplete.
+    {
+        "key": "r",
+        "command": "dance.run",
+        "args": {
+            "commands": [
+                ".edit.replaceCharacters",
+                ".modes.set.normal"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "shift+r",
+        "command": "dance.run",
+        "args": {
+            "commands": [
+                [
+                    ".selections.saveText",
+                    {
+                        "register": "tmp"
+                    }
+                ],
+                [
+                    ".edit.insert",
+                    {
+                        "register": "dquote"
+                    }
+                ],
+                [
+                    ".updateRegister",
+                    {
+                        "copyFrom": "tmp"
+                    }
+                ],
+                ".modes.set.normal"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "y",
+        "command": "dance.run",
+        "args": {
+            "commands": [
+                [
+                    ".selections.saveText",
+                    {
+                        "register": "dquote"
+                    }
+                ],
+                ".modes.set.normal"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "d",
+        "command": "dance.run",
+        "args": {
+            "commands": [
+                [
+                    ".edit.yank-delete",
+                    {
+                        "register": "dquote"
+                    }
+                ],
+                ".modes.set.normal"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    {
+        "key": "x",
+        "command": "dance.run",
+        "args": {
+            "commands": [
+                [
+                    ".selections.changeDirection",
+                    {
+                        "direction": 1
+                    }
+                ],
+                ".select.line.below.extend",
+                ".selections.expandToLines"
+            ]
+        },
+        "when": "editorTextFocus && dance.mode == 'helix/select'"
+    },
+    //
+    // Insert mode
+    //
+    {
+        "key": "tab",
+        "command": "selectNextQuickFix",
+        "when": "editorFocus && quickFixWidgetVisible"
+    },
+    {
+        "key": "tab",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    {
+        "key": "shift+tab",
+        "command": "selectPrevQuickFix",
+        "when": "editorFocus && quickFixWidgetVisible"
+    },
+    {
+        "key": "shift+tab",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    // {
+    //     "key": "ctrl+x",
+    //     "command": "editor.action.triggerSuggest",
+    //     "when": "!suggestWidgetVisible && editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
+    // },
+    {
+        "key": "ctrl+r",
+        "command": "dance.edit.selectRegister-insert",
+        "when": "editorTextFocus && dance.mode == 'helix/insert'"
+    },
+    // {
+    //     "key": "ctrl+s",
+    //     "command": "???",
+    //     "when": "editorTextFocus && dance.mode == 'helix/insert'"
+    // },
+    {
+        "key": "ctrl+w",
+        "command": "deleteWordLeft",
+        "when": "editorTextFocus && dance.mode == 'helix/insert'"
+    },
+    {
+        "key": "alt+d",
+        "command": "deleteWordRight",
+        "when": "editorTextFocus && dance.mode == 'helix/insert'"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "deleteAllLeft",
+        "when": "editorTextFocus && dance.mode == 'helix/insert'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "deleteAllRight",
+        "when": "editorTextFocus && dance.mode == 'helix/insert'"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "deleteLeft",
+        "when": "editorTextFocus && dance.mode == 'helix/insert'"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "deleteRight",
+        "when": "editorTextFocus && dance.mode == 'helix/insert'"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "dance.edit.newLine.below.insert",
+        "when": "editorTextFocus && dance.mode == 'helix/insert'"
     },
     {
         "key": "browserback",
