@@ -34,7 +34,6 @@
     "workbench.editor.enablePreview": false,
     "workbench.editor.wrapTabs": true,
     "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}",
-    "search.smartCase": true,
     "terminal.integrated.rightClickBehavior": "default",
     "telemetry.telemetryLevel": "off",
     "workbench.colorTheme": "Dobri Next -C04- Material",
