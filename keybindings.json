@@ -253,7 +253,7 @@
         "key": "backspace",
         "command": "dance.openMenu",
         "args": {
-            "menu": "ui-hx",
+            "menu": "ui-hx"
         },
         "when": "editorTextFocus && dance.mode == 'helix/normal' || dance.mode == 'helix/select'"
     },
@@ -506,5 +506,5 @@
         "key": "ctrl+b",
         "command": "-dance.select.vertically",
         "when": "editorTextFocus && dance.mode == 'helix/select'"
-    },
+    }
 ]
