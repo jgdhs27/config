@@ -103,15 +103,15 @@
         "normal": {
             "lineNumbers": "inherit",
             "cursorStyle": "block",
-            "selectionBehavior": "character",
+            "selectionBehavior": "character"
         },
         "insert": {
             "lineNumbers": "inherit",
             "cursorStyle": "line",
-            "selectionBehavior": "character",
+            "selectionBehavior": "character"
         },
         "input": {
-            "inheritFrom": "insert",
+            "inheritFrom": "insert"
         },
         "select": {
             "inheritFrom": "normal",
@@ -142,8 +142,8 @@
                         ]
                     }
                 ]
-            ],
-        },
+            ]
+        }
     },
     "dance.menus": {
         "goto": {
@@ -251,7 +251,7 @@
                             ]
                         }
                     ]
-                },
+                }
             }
         },
         "match": {
@@ -267,7 +267,7 @@
                                 "await vscode.commands.executeCommand('dance.seek.enclosing.backward', { shift });",
                                 "if (Context.current.mode.name !== 'helix/select') {",
                                 "await vscode.commands.executeCommand('dance.selections.reduce');",
-                                "}",
+                                "}"
                             ]
                         }
                     ]
@@ -288,7 +288,7 @@
                                 "Positions.at(sel.active.line, sel.active.character + !sel.isReversed),",
                                 "));",
                                 "await x('editor.action.insertSnippet', { snippet: (p?.at(0) || c) + '${TM_SELECTED_TEXT}' + (p?.at(1) || c) });",
-                                "await x('dance.selections.restore');",
+                                "await x('dance.selections.restore');"
                             ]
                         }
                     ]
@@ -322,7 +322,7 @@
                                 "await x('dance.select.right.extend');",
                                 "await x('editor.action.insertSnippet', { snippet: (p?.at(0) || c) + '${TM_SELECTED_TEXT}' + (p?.at(1) || c) });",
                                 "await x('dance.selections.restore');",
-                                "Selections.updateWithFallbackByIndex((i, sel) => o[i]);",
+                                "Selections.updateWithFallbackByIndex((i, sel) => o[i]);"
                             ]
                         }
                     ]
@@ -353,7 +353,7 @@
                                 "Selections.updateWithFallbackByIndex((i, sel) => new vscode.Selection(",
                                 "Positions.at(o[i].anchor.line, o[i].anchor.character - 1 + o[i].anchor.isEqual(s[i].anchor) * (sel.isReversed ? -1 : 1)),",
                                 "Positions.at(o[i].active.line, o[i].active.character - 1 - o[i].active.isEqual(s[i].active) * (sel.isReversed ? -1 : 1)),",
-                                "));",
+                                "));"
                             ]
                         }
                     ]
@@ -519,8 +519,8 @@
                             "input": "(?#noescape)`(?#inner)(?#noescape)`"
                         }
                     ]
-                },
-            },
+                }
+            }
         },
         "object-hx": {
             "items": {
@@ -671,8 +671,8 @@
                             "input": "[ \t](?#inner)[ \t]"
                         }
                     ]
-                },
-            },
+                }
+            }
         },
         "window-hx": {
             "title": "View",
@@ -746,8 +746,8 @@
                             "menu": "new-window-hx"
                         }
                     ]
-                },
-            },
+                }
+            }
         },
         "new-window-hx": {
             "title": "New split scratch buffer",
@@ -775,8 +775,8 @@
                             ]
                         }
                     ]
-                },
-            },
+                }
+            }
         },
         "left-bracket-hx": {
             "title": "Left bracket",
@@ -855,8 +855,8 @@
                 " ": {
                     "text": "Add newline above",
                     "command": "dance.edit.newLine.above"
-                },
-            },
+                }
+            }
         },
         "right-bracket-hx": {
             "title": "Right bracket",
@@ -935,8 +935,8 @@
                 " ": {
                     "text": "Add newline below",
                     "command": "dance.edit.newLine.below"
-                },
-            },
+                }
+            }
         },
         "ui-hx": {
             "title": "UI",
@@ -968,8 +968,8 @@
                 "r": {
                     "text": "Roo code",
                     "command": "roo-cline.SidebarProvider.focus"
-                },
-            },
+                }
+            }
         },
         "leader-hx": {
             "title": "Space",
@@ -1004,7 +1004,7 @@
                     "args": [
                         {
                             "commands": [
-                                "editor.action.addSelectionToNextFindMatch",
+                                "editor.action.addSelectionToNextFindMatch"
                             ]
                         }
                     ]
@@ -1023,7 +1023,7 @@
                 },
                 "g": {
                     "text": "Debug",
-                    "command": "editor.debug.action.toggleBreakpoint",
+                    "command": "editor.debug.action.toggleBreakpoint"
                 },
                 "w": {
                     "text": "Window",
@@ -1115,7 +1115,7 @@
                     "args": [
                         {
                             "commands": [
-                                "editor.action.selectHighlights",
+                                "editor.action.selectHighlights"
                             ]
                         }
                     ]
@@ -1131,9 +1131,9 @@
                 "X": {
                     "text": "Copy relative path to file",
                     "command": "copyRelativeFilePath"
-                },
+                }
             }
-        },
+        }
     },
     "workbench.activityBar.location": "hidden",
     "editor.fontFamily": "'MesloLGM Nerd Font Regular', 'Courier New', monospace",
@@ -1203,5 +1203,5 @@
         "git log",
         "git diff",
         "git show"
-    ],
+    ]
 }
