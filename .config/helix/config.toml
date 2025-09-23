@@ -21,6 +21,11 @@ L = "extend_to_line_end"
 [keys.select]
 H = "extend_to_line_start"
 L = "extend_to_line_end"
+r = "replace_with_yanked"
+R = "replace"
+'}' = "goto_next_paragraph"
+'{' = "goto_prev_paragraph"
+"'" = ":format"
 
 [keys.normal.g]
 s = "goto_line_start"
@@ -44,6 +49,7 @@ g = "@mig"
 "]" = "@mi]"
 "'" = "@mi'"
 '"' = '@mi"'
+'q' = '@mi"'
 
 [editor]
 true-color = true
