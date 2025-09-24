@@ -26,27 +26,32 @@ config.default_cursor_style = "SteadyBar"
 wezterm.on("gui-startup", function()
   local tab, pane, window = mux.spawn_window {}
   window:gui_window():maximize()
+  window:gui_window():setposition(0, 0)
 end)
 
 -- Shell
 if host_os == "windows" then
   config.default_prog = { "pwsh.exe", "-NoLogo" }
-else
+elseif host_os == "macos" then
+  config.default_prog = { "/bin/zsh", "-l", "-c", "exec fish" }
+elseif host_os == "linux" then
   config.default_prog = { "/usr/bin/fish", "-l" }
 end
 
 -- Font
 config.font = wezterm.font_with_fallback({
-  "MesloLGM Nerd Font Regular",
+  "MesloLGS Nerd Font",
   "Noto Color Emoji", -- emoji fallback
 })
-config.font_size = 14.0
+config.freetype_load_flags = 'NO_HINTING'
+if host_os == "macos" then
+  config.font_size = 18.0
+else
+  config.font_size = 14.0
+end
 
 -- Colors
--- config.color_scheme = 'Colors (base16)'
--- config.color_scheme = 'Materia (base16)'
--- config.color_scheme = 'Material (base16)'
-config.color_scheme = 'MaterialDesignColors'
+config.color_scheme = 'Colors (base16)'
 
 -- Window appearance
 config.window_padding = {
@@ -62,7 +67,7 @@ local function mod_ctrl()
   return os == "macos" and "SUPER" or "CTRL"
 end
 
-config.leader = { key = 'F20', timeout_milliseconds = 2000 }
+config.leader = { key = 'F15', timeout_milliseconds = 2000 }
 config.keys = {
   -- Tabs
   { key = "t", mods = mod_ctrl(), action = act.SpawnTab "CurrentPaneDomain" },
@@ -92,7 +97,12 @@ config.keys = {
     key = 'RightArrow',
     mods = 'CTRL|SHIFT',
     action = act.DisableDefaultAssignment,
-  }
+  },
+  { key = "LeftArrow",  mods = "CMD", action = act.SendKey({ mods = "CTRL", key = "a" }) },
+  { key = "RightArrow", mods = "CMD", action = act.SendKey({ mods = "CTRL", key = "e" }) },
+  { key = "Backspace",  mods = "CMD", action = act.SendKey({ mods = "CTRL", key = "u" }) },
+  { key = "LeftArrow",  mods = "OPT", action = act.SendKey({ mods = "ALT", key = "b" }) },
+  { key = "RightArrow", mods = "OPT", action = act.SendKey({ mods = "ALT", key = "f" }) },
 }
 
 -- Scrollback
