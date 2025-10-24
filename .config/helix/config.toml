@@ -29,7 +29,7 @@ r = "replace_selections_with_clipboard"
 '{' = "goto_prev_paragraph"
 '-' = "decrement"
 '+' = "increment"
-"'" = ":format"
+"'" = [":format", ":write"]
 
 [keys.normal.g]
 s = "goto_line_start"
@@ -63,7 +63,6 @@ color-modes = true
 jump-label-alphabet = "aeiounrtsgbldwjzxmcv"
 rulers = [80]
 auto-pairs = false
-auto-save = true
 default-yank-register = "+"
 
 [editor.lsp]
