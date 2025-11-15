@@ -79,7 +79,7 @@
         "command": "dance.run",
         "args": {
             "code": [
-                "let pos = Selections.mapByIndex((_i, sel, document) => Objects.paragraph.start(Positions.previous(sel.active)));",
+                "let pos = Selections.mapByIndex((_i, sel, document) => Objects.paragraph.start(Positions.previous(Positions.previous(sel.active))));",
                 "if (Context.current.mode.name !== 'select') {",
                 "await vscode.commands.executeCommand('dance.selections.reduce');",
                 "}",

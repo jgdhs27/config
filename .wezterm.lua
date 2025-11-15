@@ -26,7 +26,9 @@ config.default_cursor_style = "SteadyBar"
 wezterm.on("gui-startup", function()
   local tab, pane, window = mux.spawn_window {}
   window:gui_window():maximize()
-  window:gui_window():setposition(0, 0)
+  if not host_os == "linux" then
+    window:gui_window():setposition(0, 0)
+  end
 end)
 
 -- Shell
@@ -44,9 +46,11 @@ config.font = wezterm.font_with_fallback({
   "Noto Color Emoji", -- emoji fallback
 })
 config.freetype_load_flags = 'NO_HINTING'
-if host_os == "macos" then
+if host_os == "windows" then
   config.font_size = 18.0
-else
+elseif host_os == "linux" then
+  config.font_size = 16.0
+else 
   config.font_size = 14.0
 end
 
@@ -67,7 +71,7 @@ local function mod_ctrl()
   return os == "macos" and "SUPER" or "CTRL"
 end
 
-config.leader = { key = 'F15', timeout_milliseconds = 2000 }
+config.leader = { key = 'F2', timeout_milliseconds = 2000 }
 config.keys = {
   -- Tabs
   { key = "t", mods = mod_ctrl(), action = act.SpawnTab "CurrentPaneDomain" },
@@ -103,6 +107,24 @@ config.keys = {
   { key = "Backspace",  mods = "CMD", action = act.SendKey({ mods = "CTRL", key = "u" }) },
   { key = "LeftArrow",  mods = "OPT", action = act.SendKey({ mods = "ALT", key = "b" }) },
   { key = "RightArrow", mods = "OPT", action = act.SendKey({ mods = "ALT", key = "f" }) },
+}
+
+config.key_tables = {
+  resize_pane = {
+    { key = 'LeftArrow', action = act.AdjustPaneSize { 'Left', 3 } },
+    { key = 'h', action = act.AdjustPaneSize { 'Left', 3 } },
+
+    { key = 'RightArrow', action = act.AdjustPaneSize { 'Right', 3 } },
+    { key = 'l', action = act.AdjustPaneSize { 'Right', 3 } },
+
+    { key = 'UpArrow', action = act.AdjustPaneSize { 'Up', 1 } },
+    { key = 'k', action = act.AdjustPaneSize { 'Up', 1 } },
+
+    { key = 'DownArrow', action = act.AdjustPaneSize { 'Down', 1 } },
+    { key = 'j', action = act.AdjustPaneSize { 'Down', 1 } },
+
+    { key = 'Escape', action = 'PopKeyTable' },
+  },
 }
 
 -- Scrollback
