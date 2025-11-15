@@ -4,28 +4,32 @@ theme = "material_darker"
 insert = "bar"
 
 [keys.normal."backspace"]
-e = ":sh zellij run --close-on-exit --floating -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh open"
-g = ":sh zellij run --close-on-exit --floating -x 10% -y 10% --width 80% --height 80% -- lazygit"
+g = ":sh wezterm cli split-pane --right --percent 40 lazygit"
+w = ":toggle-option soft-wrap.enable"
+c = ":config-open"
+l = ":o ~/.config/helix/languages.toml"
 
 [keys.normal]
-r = "replace_with_yanked"
+H = "extend_to_first_nonwhitespace"
+L = "extend_to_line_end"
 R = "replace"
+r = "replace_selections_with_clipboard"
 '}' = "goto_next_paragraph"
 '{' = "goto_prev_paragraph"
 '-' = "decrement"
-'=' = "increment"
-"'" = ":format"
-H = "extend_to_first_nonwhitespace"
-L = "extend_to_line_end"
+'+' = "increment"
+"'" = [":format", ":write"]
 
 [keys.select]
-H = "extend_to_line_start"
+H = "extend_to_first_nonwhitespace"
 L = "extend_to_line_end"
-r = "replace_with_yanked"
 R = "replace"
+r = "replace_selections_with_clipboard"
 '}' = "goto_next_paragraph"
 '{' = "goto_prev_paragraph"
-"'" = ":format"
+'-' = "decrement"
+'+' = "increment"
+"'" = [":format", ":write"]
 
 [keys.normal.g]
 s = "goto_line_start"
@@ -59,6 +63,7 @@ color-modes = true
 jump-label-alphabet = "aeiounrtsgbldwjzxmcv"
 rulers = [80]
 auto-pairs = false
+default-yank-register = "+"
 
 [editor.lsp]
 display-messages = true
